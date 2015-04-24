@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5e05733e8811404fb5002560da79caa9" Name="Diagram1" >
+        <EntityTypeShape EntityType="C_Model.Coupon" Width="1.5" PointX="13.5" PointY="0.5" />
+        <EntityTypeShape EntityType="C_Model.User" Width="1.5" PointX="4" PointY="0.625" />
+        <EntityTypeShape EntityType="C_Model.SystemAdmin" Width="1.5" PointX="4.625" PointY="5.875" />
+        <InheritanceConnector EntityType="C_Model.SystemAdmin" ManuallyRouted="true" >
+          <ConnectorPoint PointX="4.75" PointY="2.6052864583333335" />
+          <ConnectorPoint PointX="4.75" PointY="5.5" />
+          <ConnectorPoint PointX="5.375" PointY="5.5" />
+          <ConnectorPoint PointX="5.375" PointY="5.875" />
+        </InheritanceConnector>
+        <EntityTypeShape EntityType="C_Model.FirmOwner" Width="1.5" PointX="2.375" PointY="5.75" />
+        <AssociationConnector Association="C_Model.SystemAdminFirmOwner" />
+        <InheritanceConnector EntityType="C_Model.FirmOwner" />
+        <EntityTypeShape EntityType="C_Model.Costumer" Width="1.5" PointX="6.625" PointY="5.75" />
+        <InheritanceConnector EntityType="C_Model.Costumer" />
+        <EntityTypeShape EntityType="C_Model.SocialCoupon" Width="1.5" PointX="11.75" PointY="4.625" />
+        <InheritanceConnector EntityType="C_Model.SocialCoupon" />
+        <AssociationConnector Association="C_Model.CostumerSocialCoupon" />
+        <AssociationConnector Association="C_Model.UserCoupon" />
+        <EntityTypeShape EntityType="C_Model.Firm" Width="1.5" PointX="3.125" PointY="9.125" />
+        <AssociationConnector Association="C_Model.FirmOwnerFirm" />
+        <AssociationConnector Association="C_Model.SystemAdminFirm" />
+        <EntityTypeShape EntityType="C_Model.CouponAlert" Width="1.5" PointX="14.25" PointY="6.625" />
+        <AssociationConnector Association="C_Model.CouponCouponAlert" />
+        <EntityTypeShape EntityType="C_Model.CouponOrder" Width="1.5" PointX="9.125" PointY="1.75" />
+        <AssociationConnector Association="C_Model.CouponOrderCoupon" />
+        <AssociationConnector Association="C_Model.CostumerCouponOrder" />
+        <AssociationConnector Association="C_Model.CostumerCouponAlert" />
+        <EntityTypeShape EntityType="C_Model.SocialNetworkProfile" Width="1.5" PointX="8.75" PointY="9" />
+        <AssociationConnector Association="C_Model.CostumerSocialNetworkProfile" />
+        <EntityTypeShape EntityType="C_Model.Categories" Width="1.5" PointX="6" PointY="2.625" />
+        <AssociationConnector Association="C_Model.CouponOrderCategories" />
+        <AssociationConnector Association="C_Model.CostumerCategories" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

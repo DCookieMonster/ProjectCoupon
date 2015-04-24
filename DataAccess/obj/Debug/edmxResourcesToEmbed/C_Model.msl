@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="C_ModelStoreContainer" CdmEntityContainer="C_ModelContainer">
+    <EntitySetMapping Name="Coupons">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.Coupon)">
+        <MappingFragment StoreEntitySet="Coupons">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="originalPrice" ColumnName="originalPrice" />
+          <ScalarProperty Name="discountPrice" ColumnName="discountPrice" />
+          <ScalarProperty Name="aggregatedRank" ColumnName="aggregatedRank" />
+          <ScalarProperty Name="lastDateForUse" ColumnName="lastDateForUse" />
+          <ScalarProperty Name="reaminingQuantity" ColumnName="reaminingQuantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.SocialCoupon)">
+        <MappingFragment StoreEntitySet="Coupons_SocialCoupon">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.SystemAdmin)">
+        <MappingFragment StoreEntitySet="Users_SystemAdmin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.FirmOwner)">
+        <MappingFragment StoreEntitySet="Users_FirmOwner">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.Costumer)">
+        <MappingFragment StoreEntitySet="Users_Costumer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Firms">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.Firm)">
+        <MappingFragment StoreEntitySet="Firms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="city" ColumnName="city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CouponAlerts">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.CouponAlert)">
+        <MappingFragment StoreEntitySet="CouponAlerts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="alerType" ColumnName="alerType" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CouponOrders">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.CouponOrder)">
+        <MappingFragment StoreEntitySet="CouponOrders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="serialKey" ColumnName="serialKey" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="recipt" ColumnName="recipt" />
+          <ScalarProperty Name="isUsed" ColumnName="isUsed" />
+          <ScalarProperty Name="creditApproval" ColumnName="creditApproval" />
+          <ScalarProperty Name="rank" ColumnName="rank" />
+          <ScalarProperty Name="QR" ColumnName="QR" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SocialNetworkProfiles1">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.SocialNetworkProfile)">
+        <MappingFragment StoreEntitySet="SocialNetworkProfiles1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="sendData" ColumnName="sendData" />
+          <ScalarProperty Name="recivedDData" ColumnName="recivedDData" />
+          <ScalarProperty Name="authToken" ColumnName="authToken" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.Categories)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="category" ColumnName="category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SystemAdminFirmOwner" TypeName="C_Model.SystemAdminFirmOwner" StoreEntitySet="Users_FirmOwner">
+      <EndProperty Name="SystemAdmin">
+        <ScalarProperty Name="Id" ColumnName="SystemAdmin_Id" />
+      </EndProperty>
+      <EndProperty Name="FirmOwner">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerSocialCoupon" TypeName="C_Model.CostumerSocialCoupon" StoreEntitySet="Coupons_SocialCoupon">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="SocialCoupon">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserCoupon" TypeName="C_Model.UserCoupon" StoreEntitySet="Coupons">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FirmOwnerFirm" TypeName="C_Model.FirmOwnerFirm" StoreEntitySet="Firms">
+      <EndProperty Name="FirmOwner">
+        <ScalarProperty Name="Id" ColumnName="FirmOwner_Id" />
+      </EndProperty>
+      <EndProperty Name="Firm">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SystemAdminFirm" TypeName="C_Model.SystemAdminFirm" StoreEntitySet="Firms">
+      <EndProperty Name="SystemAdmin">
+        <ScalarProperty Name="Id" ColumnName="SystemAdmin_Id" />
+      </EndProperty>
+      <EndProperty Name="Firm">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CouponCouponAlert" TypeName="C_Model.CouponCouponAlert" StoreEntitySet="CouponAlerts">
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="Coupon_Id" />
+      </EndProperty>
+      <EndProperty Name="CouponAlert">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Coupon_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CouponOrderCoupon" TypeName="C_Model.CouponOrderCoupon" StoreEntitySet="Coupons">
+      <EndProperty Name="CouponOrder">
+        <ScalarProperty Name="Id" ColumnName="CouponOrder_Id" />
+      </EndProperty>
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerCouponOrder" TypeName="C_Model.CostumerCouponOrder" StoreEntitySet="CouponOrders">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="CouponOrder">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerCouponAlert" TypeName="C_Model.CostumerCouponAlert" StoreEntitySet="CostumerCouponAlert">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="CouponAlert">
+        <ScalarProperty Name="Id" ColumnName="CouponAlerts_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerSocialNetworkProfile" TypeName="C_Model.CostumerSocialNetworkProfile" StoreEntitySet="SocialNetworkProfiles1">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="SocialNetworkProfile">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CouponOrderCategories" TypeName="C_Model.CouponOrderCategories" StoreEntitySet="CouponOrderCategories">
+      <EndProperty Name="CouponOrder">
+        <ScalarProperty Name="Id" ColumnName="CouponOrder_Id" />
+      </EndProperty>
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="Id" ColumnName="Categories_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerCategories" TypeName="C_Model.CostumerCategories" StoreEntitySet="CostumerCategories">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="Id" ColumnName="Categories_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping>

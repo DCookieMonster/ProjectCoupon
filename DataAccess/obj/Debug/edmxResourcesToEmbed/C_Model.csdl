@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="C_Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+  <EntityContainer Name="C_ModelContainer" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Coupons" EntityType="C_Model.Coupon" />
+    <EntitySet Name="Users" EntityType="C_Model.User" />
+    <AssociationSet Name="SystemAdminFirmOwner" Association="C_Model.SystemAdminFirmOwner">
+      <End Role="SystemAdmin" EntitySet="Users" />
+      <End Role="FirmOwner" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="CostumerSocialCoupon" Association="C_Model.CostumerSocialCoupon">
+      <End Role="Costumer" EntitySet="Users" />
+      <End Role="SocialCoupon" EntitySet="Coupons" />
+    </AssociationSet>
+    <AssociationSet Name="UserCoupon" Association="C_Model.UserCoupon">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Coupon" EntitySet="Coupons" />
+    </AssociationSet>
+    <EntitySet Name="Firms" EntityType="C_Model.Firm" />
+    <AssociationSet Name="FirmOwnerFirm" Association="C_Model.FirmOwnerFirm">
+      <End Role="FirmOwner" EntitySet="Users" />
+      <End Role="Firm" EntitySet="Firms" />
+    </AssociationSet>
+    <AssociationSet Name="SystemAdminFirm" Association="C_Model.SystemAdminFirm">
+      <End Role="SystemAdmin" EntitySet="Users" />
+      <End Role="Firm" EntitySet="Firms" />
+    </AssociationSet>
+    <EntitySet Name="CouponAlerts" EntityType="C_Model.CouponAlert" />
+    <AssociationSet Name="CouponCouponAlert" Association="C_Model.CouponCouponAlert">
+      <End Role="Coupon" EntitySet="Coupons" />
+      <End Role="CouponAlert" EntitySet="CouponAlerts" />
+    </AssociationSet>
+    <EntitySet Name="CouponOrders" EntityType="C_Model.CouponOrder" />
+    <AssociationSet Name="CouponOrderCoupon" Association="C_Model.CouponOrderCoupon">
+      <End Role="CouponOrder" EntitySet="CouponOrders" />
+      <End Role="Coupon" EntitySet="Coupons" />
+    </AssociationSet>
+    <AssociationSet Name="CostumerCouponOrder" Association="C_Model.CostumerCouponOrder">
+      <End Role="Costumer" EntitySet="Users" />
+      <End Role="CouponOrder" EntitySet="CouponOrders" />
+    </AssociationSet>
+    <AssociationSet Name="CostumerCouponAlert" Association="C_Model.CostumerCouponAlert">
+      <End Role="Costumer" EntitySet="Users" />
+      <End Role="CouponAlert" EntitySet="CouponAlerts" />
+    </AssociationSet>
+    <EntitySet Name="SocialNetworkProfiles1" EntityType="C_Model.SocialNetworkProfile" />
+    <AssociationSet Name="CostumerSocialNetworkProfile" Association="C_Model.CostumerSocialNetworkProfile">
+      <End Role="Costumer" EntitySet="Users" />
+      <End Role="SocialNetworkProfile" EntitySet="SocialNetworkProfiles1" />
+    </AssociationSet>
+    <EntitySet Name="Categories" EntityType="C_Model.Categories" />
+    <AssociationSet Name="CouponOrderCategories" Association="C_Model.CouponOrderCategories">
+      <End Role="CouponOrder" EntitySet="CouponOrders" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="CostumerCategories" Association="C_Model.CostumerCategories">
+      <End Role="Costumer" EntitySet="Users" />
+      <End Role="Categories" EntitySet="Categories" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Coupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="C_Model.UserCoupon" FromRole="Coupon" ToRole="User" />
+    <NavigationProperty Name="CouponAlerts" Relationship="C_Model.CouponCouponAlert" FromRole="Coupon" ToRole="CouponAlert" />
+    <NavigationProperty Name="CouponOrder" Relationship="C_Model.CouponOrderCoupon" FromRole="Coupon" ToRole="CouponOrder" />
+    <Property Name="description" Type="String" Nullable="false" />
+    <Property Name="originalPrice" Type="Double" Nullable="false" />
+    <Property Name="discountPrice" Type="Double" Nullable="false" />
+    <Property Name="aggregatedRank" Type="Double" Nullable="false" />
+    <Property Name="lastDateForUse" Type="DateTime" Nullable="false" />
+    <Property Name="reaminingQuantity" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" Nullable="false" />
+    <Property Name="password" Type="String" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" />
+    <NavigationProperty Name="Coupons" Relationship="C_Model.UserCoupon" FromRole="User" ToRole="Coupon" />
+  </EntityType>
+  <EntityType Name="SystemAdmin" BaseType="C_Model.User">
+    <NavigationProperty Name="FirmOwners" Relationship="C_Model.SystemAdminFirmOwner" FromRole="SystemAdmin" ToRole="FirmOwner" />
+    <NavigationProperty Name="Firms" Relationship="C_Model.SystemAdminFirm" FromRole="SystemAdmin" ToRole="Firm" />
+  </EntityType>
+  <EntityType Name="FirmOwner" BaseType="C_Model.User">
+    <NavigationProperty Name="SystemAdmin" Relationship="C_Model.SystemAdminFirmOwner" FromRole="FirmOwner" ToRole="SystemAdmin" />
+    <NavigationProperty Name="Firms" Relationship="C_Model.FirmOwnerFirm" FromRole="FirmOwner" ToRole="Firm" />
+  </EntityType>
+  <Association Name="SystemAdminFirmOwner">
+    <End Type="C_Model.SystemAdmin" Role="SystemAdmin" Multiplicity="1" />
+    <End Type="C_Model.FirmOwner" Role="FirmOwner" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Costumer" BaseType="C_Model.User">
+    <Property Name="age" Type="Double" Nullable="false" />
+    <Property Name="gender" Type="C_Model.Gender" Nullable="false" />
+    <NavigationProperty Name="SocialCoupons" Relationship="C_Model.CostumerSocialCoupon" FromRole="Costumer" ToRole="SocialCoupon" />
+    <NavigationProperty Name="CouponOrders" Relationship="C_Model.CostumerCouponOrder" FromRole="Costumer" ToRole="CouponOrder" />
+    <NavigationProperty Name="CouponAlerts" Relationship="C_Model.CostumerCouponAlert" FromRole="Costumer" ToRole="CouponAlert" />
+    <NavigationProperty Name="SocialNetworkProfiles" Relationship="C_Model.CostumerSocialNetworkProfile" FromRole="Costumer" ToRole="SocialNetworkProfile" />
+    <NavigationProperty Name="Categories" Relationship="C_Model.CostumerCategories" FromRole="Costumer" ToRole="Categories" />
+  </EntityType>
+  <EntityType Name="SocialCoupon" BaseType="C_Model.Coupon">
+    <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerSocialCoupon" FromRole="SocialCoupon" ToRole="Costumer" />
+  </EntityType>
+  <Association Name="CostumerSocialCoupon">
+    <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1" />
+    <End Type="C_Model.SocialCoupon" Role="SocialCoupon" Multiplicity="*" />
+  </Association>
+  <Association Name="UserCoupon">
+    <End Type="C_Model.User" Role="User" Multiplicity="1" />
+    <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="*" />
+  </Association>
+  <EntityType Name="Firm">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="FirmOwner" Relationship="C_Model.FirmOwnerFirm" FromRole="Firm" ToRole="FirmOwner" />
+    <NavigationProperty Name="SystemAdmin" Relationship="C_Model.SystemAdminFirm" FromRole="Firm" ToRole="SystemAdmin" />
+    <Property Name="name" Type="String" Nullable="false" />
+    <Property Name="address" Type="String" Nullable="false" />
+    <Property Name="longitude" Type="Double" Nullable="false" />
+    <Property Name="latitude" Type="Double" Nullable="false" />
+    <Property Name="description" Type="String" Nullable="false" />
+    <Property Name="city" Type="String" Nullable="false" />
+  </EntityType>
+  <Association Name="FirmOwnerFirm">
+    <End Type="C_Model.FirmOwner" Role="FirmOwner" Multiplicity="1" />
+    <End Type="C_Model.Firm" Role="Firm" Multiplicity="*" />
+  </Association>
+  <Association Name="SystemAdminFirm">
+    <End Type="C_Model.SystemAdmin" Role="SystemAdmin" Multiplicity="1" />
+    <End Type="C_Model.Firm" Role="Firm" Multiplicity="*" />
+  </Association>
+  <EntityType Name="CouponAlert">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Coupon" Relationship="C_Model.CouponCouponAlert" FromRole="CouponAlert" ToRole="Coupon" />
+    <Property Name="alerType" Type="C_Model.AlertType" Nullable="false" />
+    <Property Name="text" Type="String" Nullable="false" />
+    <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCouponAlert" FromRole="CouponAlert" ToRole="Costumer" />
+  </EntityType>
+  <Association Name="CouponCouponAlert">
+    <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="0..1" />
+    <End Type="C_Model.CouponAlert" Role="CouponAlert" Multiplicity="*" />
+  </Association>
+  <EntityType Name="CouponOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="Coupons" Relationship="C_Model.CouponOrderCoupon" FromRole="CouponOrder" ToRole="Coupon" />
+    <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCouponOrder" FromRole="CouponOrder" ToRole="Costumer" />
+    <Property Name="serialKey" Type="String" Nullable="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" />
+    <Property Name="recipt" Type="String" Nullable="false" />
+    <Property Name="isUsed" Type="Boolean" Nullable="false" />
+    <Property Name="creditApproval" Type="String" Nullable="false" />
+    <Property Name="rank" Type="Double" Nullable="false" />
+    <Property Name="QR" Type="String" Nullable="false" />
+    <Property Name="quantity" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Categories" Relationship="C_Model.CouponOrderCategories" FromRole="CouponOrder" ToRole="Categories" />
+  </EntityType>
+  <Association Name="CouponOrderCoupon">
+    <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="1" />
+    <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="*" />
+  </Association>
+  <Association Name="CostumerCouponOrder">
+    <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1" />
+    <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="*" />
+  </Association>
+  <Association Name="CostumerCouponAlert">
+    <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="*" />
+    <End Type="C_Model.CouponAlert" Role="CouponAlert" Multiplicity="*" />
+  </Association>
+  <EntityType Name="SocialNetworkProfile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" Nullable="false" />
+    <Property Name="email" Type="String" Nullable="false" />
+    <Property Name="password" Type="String" Nullable="false" />
+    <Property Name="sendData" Type="String" Nullable="false" />
+    <Property Name="recivedDData" Type="String" Nullable="false" />
+    <Property Name="authToken" Type="String" Nullable="false" />
+    <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerSocialNetworkProfile" FromRole="SocialNetworkProfile" ToRole="Costumer" />
+  </EntityType>
+  <Association Name="CostumerSocialNetworkProfile">
+    <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1" />
+    <End Type="C_Model.SocialNetworkProfile" Role="SocialNetworkProfile" Multiplicity="*" />
+  </Association>
+  <EnumType Name="Gender">
+    <Member Name="Male" />
+    <Member Name="Female" />
+  </EnumType>
+  <EnumType Name="AlertType">
+    <Member Name="GPSAlert" />
+    <Member Name="CategoryAlert" />
+    <Member Name="NotUsedAlert" />
+    <Member Name="Literal" />
+  </EnumType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category" Type="C_Model.CategoryTypes" Nullable="false" />
+    <NavigationProperty Name="CouponOrder" Relationship="C_Model.CouponOrderCategories" FromRole="Categories" ToRole="CouponOrder" />
+    <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCategories" FromRole="Categories" ToRole="Costumer" />
+  </EntityType>
+  <Association Name="CouponOrderCategories">
+    <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="*" />
+    <End Type="C_Model.Categories" Role="Categories" Multiplicity="*" />
+  </Association>
+  <Association Name="CostumerCategories">
+    <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="*" />
+    <End Type="C_Model.Categories" Role="Categories" Multiplicity="*" />
+  </Association>
+  <EnumType Name="CategoryTypes">
+    <Member Name="Resturant" />
+    <Member Name="Liesure" />
+    <Member Name="Consumer" />
+    <Member Name="Sports" />
+    <Member Name="LifeStyle" />
+  </EnumType>
+</Schema>

@@ -1,0 +1,934 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="C_Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="C_ModelStoreContainer">
+    <EntitySet Name="Coupons" EntityType="C_Model.Store.Coupons" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users" EntityType="C_Model.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Firms" EntityType="C_Model.Store.Firms" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CouponAlerts" EntityType="C_Model.Store.CouponAlerts" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CouponOrders" EntityType="C_Model.Store.CouponOrders" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SocialNetworkProfiles1" EntityType="C_Model.Store.SocialNetworkProfiles1" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Categories" EntityType="C_Model.Store.Categories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users_SystemAdmin" EntityType="C_Model.Store.Users_SystemAdmin" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users_FirmOwner" EntityType="C_Model.Store.Users_FirmOwner" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Users_Costumer" EntityType="C_Model.Store.Users_Costumer" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Coupons_SocialCoupon" EntityType="C_Model.Store.Coupons_SocialCoupon" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CostumerCouponAlert" EntityType="C_Model.Store.CostumerCouponAlert" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CouponOrderCategories" EntityType="C_Model.Store.CouponOrderCategories" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="CostumerCategories" EntityType="C_Model.Store.CostumerCategories" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="SystemAdminFirmOwner" Association="C_Model.Store.SystemAdminFirmOwner">
+      <End Role="SystemAdmin" EntitySet="Users_SystemAdmin" />
+      <End Role="FirmOwner" EntitySet="Users_FirmOwner" />
+    </AssociationSet>
+    <AssociationSet Name="CostumerSocialCoupon" Association="C_Model.Store.CostumerSocialCoupon">
+      <End Role="Costumer" EntitySet="Users_Costumer" />
+      <End Role="SocialCoupon" EntitySet="Coupons_SocialCoupon" />
+    </AssociationSet>
+    <AssociationSet Name="UserCoupon" Association="C_Model.Store.UserCoupon">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Coupon" EntitySet="Coupons" />
+    </AssociationSet>
+    <AssociationSet Name="FirmOwnerFirm" Association="C_Model.Store.FirmOwnerFirm">
+      <End Role="FirmOwner" EntitySet="Users_FirmOwner" />
+      <End Role="Firm" EntitySet="Firms" />
+    </AssociationSet>
+    <AssociationSet Name="SystemAdminFirm" Association="C_Model.Store.SystemAdminFirm">
+      <End Role="SystemAdmin" EntitySet="Users_SystemAdmin" />
+      <End Role="Firm" EntitySet="Firms" />
+    </AssociationSet>
+    <AssociationSet Name="CouponCouponAlert" Association="C_Model.Store.CouponCouponAlert">
+      <End Role="Coupon" EntitySet="Coupons" />
+      <End Role="CouponAlert" EntitySet="CouponAlerts" />
+    </AssociationSet>
+    <AssociationSet Name="CouponOrderCoupon" Association="C_Model.Store.CouponOrderCoupon">
+      <End Role="CouponOrder" EntitySet="CouponOrders" />
+      <End Role="Coupon" EntitySet="Coupons" />
+    </AssociationSet>
+    <AssociationSet Name="CostumerCouponOrder" Association="C_Model.Store.CostumerCouponOrder">
+      <End Role="Costumer" EntitySet="Users_Costumer" />
+      <End Role="CouponOrder" EntitySet="CouponOrders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CostumerCouponAlert_Costumer" Association="C_Model.Store.FK_CostumerCouponAlert_Costumer">
+      <End Role="Costumer" EntitySet="Users_Costumer" />
+      <End Role="CostumerCouponAlert" EntitySet="CostumerCouponAlert" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CostumerCouponAlert_CouponAlert" Association="C_Model.Store.FK_CostumerCouponAlert_CouponAlert">
+      <End Role="CouponAlert" EntitySet="CouponAlerts" />
+      <End Role="CostumerCouponAlert" EntitySet="CostumerCouponAlert" />
+    </AssociationSet>
+    <AssociationSet Name="CostumerSocialNetworkProfile" Association="C_Model.Store.CostumerSocialNetworkProfile">
+      <End Role="Costumer" EntitySet="Users_Costumer" />
+      <End Role="SocialNetworkProfile" EntitySet="SocialNetworkProfiles1" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CouponOrderCategories_CouponOrder" Association="C_Model.Store.FK_CouponOrderCategories_CouponOrder">
+      <End Role="CouponOrder" EntitySet="CouponOrders" />
+      <End Role="CouponOrderCategories" EntitySet="CouponOrderCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CouponOrderCategories_Categories" Association="C_Model.Store.FK_CouponOrderCategories_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="CouponOrderCategories" EntitySet="CouponOrderCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CostumerCategories_Costumer" Association="C_Model.Store.FK_CostumerCategories_Costumer">
+      <End Role="Costumer" EntitySet="Users_Costumer" />
+      <End Role="CostumerCategories" EntitySet="CostumerCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CostumerCategories_Categories" Association="C_Model.Store.FK_CostumerCategories_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="CostumerCategories" EntitySet="CostumerCategories" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SystemAdmin_inherits_User" Association="C_Model.Store.FK_SystemAdmin_inherits_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SystemAdmin" EntitySet="Users_SystemAdmin" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FirmOwner_inherits_User" Association="C_Model.Store.FK_FirmOwner_inherits_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="FirmOwner" EntitySet="Users_FirmOwner" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Costumer_inherits_User" Association="C_Model.Store.FK_Costumer_inherits_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Costumer" EntitySet="Users_Costumer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SocialCoupon_inherits_Coupon" Association="C_Model.Store.FK_SocialCoupon_inherits_Coupon">
+      <End Role="Coupon" EntitySet="Coupons" />
+      <End Role="SocialCoupon" EntitySet="Coupons_SocialCoupon" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Coupons">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="originalPrice" Type="float" Nullable="false" />
+    <Property Name="discountPrice" Type="float" Nullable="false" />
+    <Property Name="aggregatedRank" Type="float" Nullable="false" />
+    <Property Name="lastDateForUse" Type="datetime" Nullable="false" />
+    <Property Name="reaminingQuantity" Type="int" Nullable="false" />
+    <Property Name="User_Id" Type="int" Nullable="false" />
+    <Property Name="CouponOrder_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Firms">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="address" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="longitude" Type="float" Nullable="false" />
+    <Property Name="latitude" Type="float" Nullable="false" />
+    <Property Name="description" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="city" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FirmOwner_Id" Type="int" Nullable="false" />
+    <Property Name="SystemAdmin_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CouponAlerts">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="alerType" Type="int" Nullable="false" />
+    <Property Name="text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Coupon_Id" Type="int" Nullable="true" />
+  </EntityType>
+  <EntityType Name="CouponOrders">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="serialKey" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="date" Type="datetime" Nullable="false" />
+    <Property Name="recipt" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="isUsed" Type="bit" Nullable="false" />
+    <Property Name="creditApproval" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="rank" Type="float" Nullable="false" />
+    <Property Name="QR" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="quantity" Type="int" Nullable="false" />
+    <Property Name="Costumer_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SocialNetworkProfiles1">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="email" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="sendData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="recivedDData" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="authToken" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Costumer_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_SystemAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_FirmOwner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="SystemAdmin_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users_Costumer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="age" Type="float" Nullable="false" />
+    <Property Name="gender" Type="int" Nullable="false" />
+    <Property Name="Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Coupons_SocialCoupon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Costumer_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CostumerCouponAlert">
+    <Key>
+      <PropertyRef Name="Costumer_Id" />
+      <PropertyRef Name="CouponAlerts_Id" />
+    </Key>
+    <Property Name="Costumer_Id" Type="int" Nullable="false" />
+    <Property Name="CouponAlerts_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CouponOrderCategories">
+    <Key>
+      <PropertyRef Name="CouponOrder_Id" />
+      <PropertyRef Name="Categories_Id" />
+    </Key>
+    <Property Name="CouponOrder_Id" Type="int" Nullable="false" />
+    <Property Name="Categories_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CostumerCategories">
+    <Key>
+      <PropertyRef Name="Costumer_Id" />
+      <PropertyRef Name="Categories_Id" />
+    </Key>
+    <Property Name="Costumer_Id" Type="int" Nullable="false" />
+    <Property Name="Categories_Id" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="SystemAdminFirmOwner">
+    <End Role="SystemAdmin" Type="C_Model.Store.Users_SystemAdmin" Multiplicity="1" />
+    <End Role="FirmOwner" Type="C_Model.Store.Users_FirmOwner" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemAdmin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FirmOwner">
+        <PropertyRef Name="SystemAdmin_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CostumerSocialCoupon">
+    <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="1" />
+    <End Role="SocialCoupon" Type="C_Model.Store.Coupons_SocialCoupon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Costumer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialCoupon">
+        <PropertyRef Name="Costumer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UserCoupon">
+    <End Role="User" Type="C_Model.Store.Users" Multiplicity="1" />
+    <End Role="Coupon" Type="C_Model.Store.Coupons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Coupon">
+        <PropertyRef Name="User_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FirmOwnerFirm">
+    <End Role="FirmOwner" Type="C_Model.Store.Users_FirmOwner" Multiplicity="1" />
+    <End Role="Firm" Type="C_Model.Store.Firms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FirmOwner">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Firm">
+        <PropertyRef Name="FirmOwner_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SystemAdminFirm">
+    <End Role="SystemAdmin" Type="C_Model.Store.Users_SystemAdmin" Multiplicity="1" />
+    <End Role="Firm" Type="C_Model.Store.Firms" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SystemAdmin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Firm">
+        <PropertyRef Name="SystemAdmin_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CouponCouponAlert">
+    <End Role="Coupon" Type="C_Model.Store.Coupons" Multiplicity="0..1" />
+    <End Role="CouponAlert" Type="C_Model.Store.CouponAlerts" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Coupon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CouponAlert">
+        <PropertyRef Name="Coupon_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CouponOrderCoupon">
+    <End Role="CouponOrder" Type="C_Model.Store.CouponOrders" Multiplicity="1" />
+    <End Role="Coupon" Type="C_Model.Store.Coupons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CouponOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Coupon">
+        <PropertyRef Name="CouponOrder_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CostumerCouponOrder">
+    <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="1" />
+    <End Role="CouponOrder" Type="C_Model.Store.CouponOrders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Costumer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CouponOrder">
+        <PropertyRef Name="Costumer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="CostumerSocialNetworkProfile">
+    <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="1" />
+    <End Role="SocialNetworkProfile" Type="C_Model.Store.SocialNetworkProfiles1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Costumer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialNetworkProfile">
+        <PropertyRef Name="Costumer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CostumerCouponAlert_Costumer">
+    <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="1" />
+    <End Role="CostumerCouponAlert" Type="C_Model.Store.CostumerCouponAlert" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Costumer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CostumerCouponAlert">
+        <PropertyRef Name="Costumer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CostumerCouponAlert_CouponAlert">
+    <End Role="CostumerCouponAlert" Type="C_Model.Store.CostumerCouponAlert" Multiplicity="*" />
+    <End Role="CouponAlert" Type="C_Model.Store.CouponAlerts" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="CouponAlert">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CostumerCouponAlert">
+        <PropertyRef Name="CouponAlerts_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CouponOrderCategories_CouponOrder">
+    <End Role="CouponOrder" Type="C_Model.Store.CouponOrders" Multiplicity="1" />
+    <End Role="CouponOrderCategories" Type="C_Model.Store.CouponOrderCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CouponOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CouponOrderCategories">
+        <PropertyRef Name="CouponOrder_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CouponOrderCategories_Categories">
+    <End Role="CouponOrderCategories" Type="C_Model.Store.CouponOrderCategories" Multiplicity="*" />
+    <End Role="Categories" Type="C_Model.Store.Categories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CouponOrderCategories">
+        <PropertyRef Name="Categories_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CostumerCategories_Costumer">
+    <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="1" />
+    <End Role="CostumerCategories" Type="C_Model.Store.CostumerCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Costumer">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CostumerCategories">
+        <PropertyRef Name="Costumer_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CostumerCategories_Categories">
+    <End Role="CostumerCategories" Type="C_Model.Store.CostumerCategories" Multiplicity="*" />
+    <End Role="Categories" Type="C_Model.Store.Categories" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CostumerCategories">
+        <PropertyRef Name="Categories_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SystemAdmin_inherits_User">
+    <End Role="User" Type="C_Model.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SystemAdmin" Type="C_Model.Store.Users_SystemAdmin" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SystemAdmin">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FirmOwner_inherits_User">
+    <End Role="User" Type="C_Model.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="FirmOwner" Type="C_Model.Store.Users_FirmOwner" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FirmOwner">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Costumer_inherits_User">
+    <End Role="User" Type="C_Model.Store.Users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Costumer">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SocialCoupon_inherits_Coupon">
+    <End Role="Coupon" Type="C_Model.Store.Coupons" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SocialCoupon" Type="C_Model.Store.Coupons_SocialCoupon" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Coupon">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SocialCoupon">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="C_Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="C_ModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Coupons" EntityType="C_Model.Coupon" />
+          <EntitySet Name="Users" EntityType="C_Model.User" />
+          <AssociationSet Name="SystemAdminFirmOwner" Association="C_Model.SystemAdminFirmOwner">
+            <End Role="SystemAdmin" EntitySet="Users" />
+            <End Role="FirmOwner" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="CostumerSocialCoupon" Association="C_Model.CostumerSocialCoupon">
+            <End Role="Costumer" EntitySet="Users" />
+            <End Role="SocialCoupon" EntitySet="Coupons" />
+          </AssociationSet>
+          <AssociationSet Name="UserCoupon" Association="C_Model.UserCoupon">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Coupon" EntitySet="Coupons" />
+          </AssociationSet>
+          <EntitySet Name="Firms" EntityType="C_Model.Firm" />
+          <AssociationSet Name="FirmOwnerFirm" Association="C_Model.FirmOwnerFirm">
+            <End Role="FirmOwner" EntitySet="Users" />
+            <End Role="Firm" EntitySet="Firms" />
+          </AssociationSet>
+          <AssociationSet Name="SystemAdminFirm" Association="C_Model.SystemAdminFirm">
+            <End Role="SystemAdmin" EntitySet="Users" />
+            <End Role="Firm" EntitySet="Firms" />
+          </AssociationSet>
+          <EntitySet Name="CouponAlerts" EntityType="C_Model.CouponAlert" />
+          <AssociationSet Name="CouponCouponAlert" Association="C_Model.CouponCouponAlert">
+            <End Role="Coupon" EntitySet="Coupons" />
+            <End Role="CouponAlert" EntitySet="CouponAlerts" />
+          </AssociationSet>
+          <EntitySet Name="CouponOrders" EntityType="C_Model.CouponOrder" />
+          <AssociationSet Name="CouponOrderCoupon" Association="C_Model.CouponOrderCoupon">
+            <End Role="CouponOrder" EntitySet="CouponOrders" />
+            <End Role="Coupon" EntitySet="Coupons" />
+          </AssociationSet>
+          <AssociationSet Name="CostumerCouponOrder" Association="C_Model.CostumerCouponOrder">
+            <End Role="Costumer" EntitySet="Users" />
+            <End Role="CouponOrder" EntitySet="CouponOrders" />
+          </AssociationSet>
+          <AssociationSet Name="CostumerCouponAlert" Association="C_Model.CostumerCouponAlert">
+            <End Role="Costumer" EntitySet="Users" />
+            <End Role="CouponAlert" EntitySet="CouponAlerts" />
+          </AssociationSet>
+          <EntitySet Name="SocialNetworkProfiles1" EntityType="C_Model.SocialNetworkProfile" />
+          <AssociationSet Name="CostumerSocialNetworkProfile" Association="C_Model.CostumerSocialNetworkProfile">
+            <End Role="Costumer" EntitySet="Users" />
+            <End Role="SocialNetworkProfile" EntitySet="SocialNetworkProfiles1" />
+          </AssociationSet>
+          <EntitySet Name="Categories" EntityType="C_Model.Categories" />
+          <AssociationSet Name="CouponOrderCategories" Association="C_Model.CouponOrderCategories">
+            <End Role="CouponOrder" EntitySet="CouponOrders" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="CostumerCategories" Association="C_Model.CostumerCategories">
+            <End Role="Costumer" EntitySet="Users" />
+            <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Coupon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="C_Model.UserCoupon" FromRole="Coupon" ToRole="User" />
+          <NavigationProperty Name="CouponAlerts" Relationship="C_Model.CouponCouponAlert" FromRole="Coupon" ToRole="CouponAlert" />
+          <NavigationProperty Name="CouponOrder" Relationship="C_Model.CouponOrderCoupon" FromRole="Coupon" ToRole="CouponOrder" />
+          <Property Name="description" Type="String" Nullable="false" />
+          <Property Name="originalPrice" Type="Double" Nullable="false" />
+          <Property Name="discountPrice" Type="Double" Nullable="false" />
+          <Property Name="aggregatedRank" Type="Double" Nullable="false" />
+          <Property Name="lastDateForUse" Type="DateTime" Nullable="false" />
+          <Property Name="reaminingQuantity" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" />
+          <Property Name="password" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <NavigationProperty Name="Coupons" Relationship="C_Model.UserCoupon" FromRole="User" ToRole="Coupon" />
+        </EntityType>
+        <EntityType Name="SystemAdmin" BaseType="C_Model.User">
+          <NavigationProperty Name="FirmOwners" Relationship="C_Model.SystemAdminFirmOwner" FromRole="SystemAdmin" ToRole="FirmOwner" />
+          <NavigationProperty Name="Firms" Relationship="C_Model.SystemAdminFirm" FromRole="SystemAdmin" ToRole="Firm" />
+        </EntityType>
+        <EntityType Name="FirmOwner" BaseType="C_Model.User">
+          <NavigationProperty Name="SystemAdmin" Relationship="C_Model.SystemAdminFirmOwner" FromRole="FirmOwner" ToRole="SystemAdmin" />
+          <NavigationProperty Name="Firms" Relationship="C_Model.FirmOwnerFirm" FromRole="FirmOwner" ToRole="Firm" />
+        </EntityType>
+        <Association Name="SystemAdminFirmOwner">
+          <End Type="C_Model.SystemAdmin" Role="SystemAdmin" Multiplicity="1" />
+          <End Type="C_Model.FirmOwner" Role="FirmOwner" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Costumer" BaseType="C_Model.User">
+          <Property Name="age" Type="Double" Nullable="false" />
+          <Property Name="gender" Type="C_Model.Gender" Nullable="false" />
+          <NavigationProperty Name="SocialCoupons" Relationship="C_Model.CostumerSocialCoupon" FromRole="Costumer" ToRole="SocialCoupon" />
+          <NavigationProperty Name="CouponOrders" Relationship="C_Model.CostumerCouponOrder" FromRole="Costumer" ToRole="CouponOrder" />
+          <NavigationProperty Name="CouponAlerts" Relationship="C_Model.CostumerCouponAlert" FromRole="Costumer" ToRole="CouponAlert" />
+          <NavigationProperty Name="SocialNetworkProfiles" Relationship="C_Model.CostumerSocialNetworkProfile" FromRole="Costumer" ToRole="SocialNetworkProfile" />
+          <NavigationProperty Name="Categories" Relationship="C_Model.CostumerCategories" FromRole="Costumer" ToRole="Categories" />
+        </EntityType>
+        <EntityType Name="SocialCoupon" BaseType="C_Model.Coupon">
+          <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerSocialCoupon" FromRole="SocialCoupon" ToRole="Costumer" />
+        </EntityType>
+        <Association Name="CostumerSocialCoupon">
+          <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1" />
+          <End Type="C_Model.SocialCoupon" Role="SocialCoupon" Multiplicity="*" />
+        </Association>
+        <Association Name="UserCoupon">
+          <End Type="C_Model.User" Role="User" Multiplicity="1" />
+          <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Firm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="FirmOwner" Relationship="C_Model.FirmOwnerFirm" FromRole="Firm" ToRole="FirmOwner" />
+          <NavigationProperty Name="SystemAdmin" Relationship="C_Model.SystemAdminFirm" FromRole="Firm" ToRole="SystemAdmin" />
+          <Property Name="name" Type="String" Nullable="false" />
+          <Property Name="address" Type="String" Nullable="false" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
+          <Property Name="description" Type="String" Nullable="false" />
+          <Property Name="city" Type="String" Nullable="false" />
+        </EntityType>
+        <Association Name="FirmOwnerFirm">
+          <End Type="C_Model.FirmOwner" Role="FirmOwner" Multiplicity="1" />
+          <End Type="C_Model.Firm" Role="Firm" Multiplicity="*" />
+        </Association>
+        <Association Name="SystemAdminFirm">
+          <End Type="C_Model.SystemAdmin" Role="SystemAdmin" Multiplicity="1" />
+          <End Type="C_Model.Firm" Role="Firm" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CouponAlert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Coupon" Relationship="C_Model.CouponCouponAlert" FromRole="CouponAlert" ToRole="Coupon" />
+          <Property Name="alerType" Type="C_Model.AlertType" Nullable="false" />
+          <Property Name="text" Type="String" Nullable="false" />
+          <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCouponAlert" FromRole="CouponAlert" ToRole="Costumer" />
+        </EntityType>
+        <Association Name="CouponCouponAlert">
+          <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="0..1" />
+          <End Type="C_Model.CouponAlert" Role="CouponAlert" Multiplicity="*" />
+        </Association>
+        <EntityType Name="CouponOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Coupons" Relationship="C_Model.CouponOrderCoupon" FromRole="CouponOrder" ToRole="Coupon" />
+          <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCouponOrder" FromRole="CouponOrder" ToRole="Costumer" />
+          <Property Name="serialKey" Type="String" Nullable="false" />
+          <Property Name="date" Type="DateTime" Nullable="false" />
+          <Property Name="recipt" Type="String" Nullable="false" />
+          <Property Name="isUsed" Type="Boolean" Nullable="false" />
+          <Property Name="creditApproval" Type="String" Nullable="false" />
+          <Property Name="rank" Type="Double" Nullable="false" />
+          <Property Name="QR" Type="String" Nullable="false" />
+          <Property Name="quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categories" Relationship="C_Model.CouponOrderCategories" FromRole="CouponOrder" ToRole="Categories" />
+        </EntityType>
+        <Association Name="CouponOrderCoupon">
+          <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="1" />
+          <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="*" />
+        </Association>
+        <Association Name="CostumerCouponOrder">
+          <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1" />
+          <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="*" />
+        </Association>
+        <Association Name="CostumerCouponAlert">
+          <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="*" />
+          <End Type="C_Model.CouponAlert" Role="CouponAlert" Multiplicity="*" />
+        </Association>
+        <EntityType Name="SocialNetworkProfile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" Nullable="false" />
+          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="password" Type="String" Nullable="false" />
+          <Property Name="sendData" Type="String" Nullable="false" />
+          <Property Name="recivedDData" Type="String" Nullable="false" />
+          <Property Name="authToken" Type="String" Nullable="false" />
+          <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerSocialNetworkProfile" FromRole="SocialNetworkProfile" ToRole="Costumer" />
+        </EntityType>
+        <Association Name="CostumerSocialNetworkProfile">
+          <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1" />
+          <End Type="C_Model.SocialNetworkProfile" Role="SocialNetworkProfile" Multiplicity="*" />
+        </Association>
+        <EnumType Name="Gender">
+          <Member Name="Male" />
+          <Member Name="Female" />
+        </EnumType>
+        <EnumType Name="AlertType">
+          <Member Name="GPSAlert" />
+          <Member Name="CategoryAlert" />
+          <Member Name="NotUsedAlert" />
+          <Member Name="Literal" />
+        </EnumType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category" Type="C_Model.CategoryTypes" Nullable="false" />
+          <NavigationProperty Name="CouponOrder" Relationship="C_Model.CouponOrderCategories" FromRole="Categories" ToRole="CouponOrder" />
+          <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCategories" FromRole="Categories" ToRole="Costumer" />
+        </EntityType>
+        <Association Name="CouponOrderCategories">
+          <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="*" />
+          <End Type="C_Model.Categories" Role="Categories" Multiplicity="*" />
+        </Association>
+        <Association Name="CostumerCategories">
+          <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="*" />
+          <End Type="C_Model.Categories" Role="Categories" Multiplicity="*" />
+        </Association>
+        <EnumType Name="CategoryTypes">
+          <Member Name="Resturant" />
+          <Member Name="Liesure" />
+          <Member Name="Consumer" />
+          <Member Name="Sports" />
+          <Member Name="LifeStyle" />
+        </EnumType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="C_ModelStoreContainer" CdmEntityContainer="C_ModelContainer">
+    <EntitySetMapping Name="Coupons">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.Coupon)">
+        <MappingFragment StoreEntitySet="Coupons">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="originalPrice" ColumnName="originalPrice" />
+          <ScalarProperty Name="discountPrice" ColumnName="discountPrice" />
+          <ScalarProperty Name="aggregatedRank" ColumnName="aggregatedRank" />
+          <ScalarProperty Name="lastDateForUse" ColumnName="lastDateForUse" />
+          <ScalarProperty Name="reaminingQuantity" ColumnName="reaminingQuantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.SocialCoupon)">
+        <MappingFragment StoreEntitySet="Coupons_SocialCoupon">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="email" ColumnName="email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.SystemAdmin)">
+        <MappingFragment StoreEntitySet="Users_SystemAdmin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.FirmOwner)">
+        <MappingFragment StoreEntitySet="Users_FirmOwner">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.Costumer)">
+        <MappingFragment StoreEntitySet="Users_Costumer">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Firms">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.Firm)">
+        <MappingFragment StoreEntitySet="Firms">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="city" ColumnName="city" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CouponAlerts">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.CouponAlert)">
+        <MappingFragment StoreEntitySet="CouponAlerts">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="alerType" ColumnName="alerType" />
+          <ScalarProperty Name="text" ColumnName="text" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CouponOrders">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.CouponOrder)">
+        <MappingFragment StoreEntitySet="CouponOrders">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="serialKey" ColumnName="serialKey" />
+          <ScalarProperty Name="date" ColumnName="date" />
+          <ScalarProperty Name="recipt" ColumnName="recipt" />
+          <ScalarProperty Name="isUsed" ColumnName="isUsed" />
+          <ScalarProperty Name="creditApproval" ColumnName="creditApproval" />
+          <ScalarProperty Name="rank" ColumnName="rank" />
+          <ScalarProperty Name="QR" ColumnName="QR" />
+          <ScalarProperty Name="quantity" ColumnName="quantity" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SocialNetworkProfiles1">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.SocialNetworkProfile)">
+        <MappingFragment StoreEntitySet="SocialNetworkProfiles1">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="sendData" ColumnName="sendData" />
+          <ScalarProperty Name="recivedDData" ColumnName="recivedDData" />
+          <ScalarProperty Name="authToken" ColumnName="authToken" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="IsTypeOf(C_Model.Categories)">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="category" ColumnName="category" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="SystemAdminFirmOwner" TypeName="C_Model.SystemAdminFirmOwner" StoreEntitySet="Users_FirmOwner">
+      <EndProperty Name="SystemAdmin">
+        <ScalarProperty Name="Id" ColumnName="SystemAdmin_Id" />
+      </EndProperty>
+      <EndProperty Name="FirmOwner">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerSocialCoupon" TypeName="C_Model.CostumerSocialCoupon" StoreEntitySet="Coupons_SocialCoupon">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="SocialCoupon">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="UserCoupon" TypeName="C_Model.UserCoupon" StoreEntitySet="Coupons">
+      <EndProperty Name="User">
+        <ScalarProperty Name="Id" ColumnName="User_Id" />
+      </EndProperty>
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FirmOwnerFirm" TypeName="C_Model.FirmOwnerFirm" StoreEntitySet="Firms">
+      <EndProperty Name="FirmOwner">
+        <ScalarProperty Name="Id" ColumnName="FirmOwner_Id" />
+      </EndProperty>
+      <EndProperty Name="Firm">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="SystemAdminFirm" TypeName="C_Model.SystemAdminFirm" StoreEntitySet="Firms">
+      <EndProperty Name="SystemAdmin">
+        <ScalarProperty Name="Id" ColumnName="SystemAdmin_Id" />
+      </EndProperty>
+      <EndProperty Name="Firm">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CouponCouponAlert" TypeName="C_Model.CouponCouponAlert" StoreEntitySet="CouponAlerts">
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="Coupon_Id" />
+      </EndProperty>
+      <EndProperty Name="CouponAlert">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+      <Condition ColumnName="Coupon_Id" IsNull="false" />
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CouponOrderCoupon" TypeName="C_Model.CouponOrderCoupon" StoreEntitySet="Coupons">
+      <EndProperty Name="CouponOrder">
+        <ScalarProperty Name="Id" ColumnName="CouponOrder_Id" />
+      </EndProperty>
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerCouponOrder" TypeName="C_Model.CostumerCouponOrder" StoreEntitySet="CouponOrders">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="CouponOrder">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerCouponAlert" TypeName="C_Model.CostumerCouponAlert" StoreEntitySet="CostumerCouponAlert">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="CouponAlert">
+        <ScalarProperty Name="Id" ColumnName="CouponAlerts_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerSocialNetworkProfile" TypeName="C_Model.CostumerSocialNetworkProfile" StoreEntitySet="SocialNetworkProfiles1">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="SocialNetworkProfile">
+        <ScalarProperty Name="Id" ColumnName="Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CouponOrderCategories" TypeName="C_Model.CouponOrderCategories" StoreEntitySet="CouponOrderCategories">
+      <EndProperty Name="CouponOrder">
+        <ScalarProperty Name="Id" ColumnName="CouponOrder_Id" />
+      </EndProperty>
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="Id" ColumnName="Categories_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CostumerCategories" TypeName="C_Model.CostumerCategories" StoreEntitySet="CostumerCategories">
+      <EndProperty Name="Costumer">
+        <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
+      </EndProperty>
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="Id" ColumnName="Categories_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
