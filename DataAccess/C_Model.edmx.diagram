@@ -35,8 +35,8 @@
         <EntityTypeShape EntityType="C_Model.SocialNetworkProfile" Width="1.5" PointX="8.75" PointY="9" />
         <AssociationConnector Association="C_Model.CostumerSocialNetworkProfile" />
         <EntityTypeShape EntityType="C_Model.Categories" Width="1.5" PointX="6" PointY="2.625" />
-        <AssociationConnector Association="C_Model.CouponOrderCategories" />
         <AssociationConnector Association="C_Model.CostumerCategories" />
+        <AssociationConnector Association="C_Model.CategoriesCoupon" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

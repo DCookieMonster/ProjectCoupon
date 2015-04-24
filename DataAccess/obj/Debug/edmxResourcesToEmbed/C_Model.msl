@@ -186,20 +186,20 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CouponOrderCategories" TypeName="C_Model.CouponOrderCategories" StoreEntitySet="CouponOrderCategories">
-      <EndProperty Name="CouponOrder">
-        <ScalarProperty Name="Id" ColumnName="CouponOrder_Id" />
-      </EndProperty>
-      <EndProperty Name="Categories">
-        <ScalarProperty Name="Id" ColumnName="Categories_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="CostumerCategories" TypeName="C_Model.CostumerCategories" StoreEntitySet="CostumerCategories">
       <EndProperty Name="Costumer">
         <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
       </EndProperty>
       <EndProperty Name="Categories">
         <ScalarProperty Name="Id" ColumnName="Categories_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CategoriesCoupon" TypeName="C_Model.CategoriesCoupon" StoreEntitySet="Coupons">
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="Id" ColumnName="Category_Id" />
+      </EndProperty>
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

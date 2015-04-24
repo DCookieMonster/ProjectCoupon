@@ -18,7 +18,6 @@
     <EntitySet Name="Users_Costumer" EntityType="C_Model.Store.Users_Costumer" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="Coupons_SocialCoupon" EntityType="C_Model.Store.Coupons_SocialCoupon" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CostumerCouponAlert" EntityType="C_Model.Store.CostumerCouponAlert" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="CouponOrderCategories" EntityType="C_Model.Store.CouponOrderCategories" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="CostumerCategories" EntityType="C_Model.Store.CostumerCategories" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="SystemAdminFirmOwner" Association="C_Model.Store.SystemAdminFirmOwner">
       <End Role="SystemAdmin" EntitySet="Users_SystemAdmin" />
@@ -64,14 +63,6 @@
       <End Role="Costumer" EntitySet="Users_Costumer" />
       <End Role="SocialNetworkProfile" EntitySet="SocialNetworkProfiles1" />
     </AssociationSet>
-    <AssociationSet Name="FK_CouponOrderCategories_CouponOrder" Association="C_Model.Store.FK_CouponOrderCategories_CouponOrder">
-      <End Role="CouponOrder" EntitySet="CouponOrders" />
-      <End Role="CouponOrderCategories" EntitySet="CouponOrderCategories" />
-    </AssociationSet>
-    <AssociationSet Name="FK_CouponOrderCategories_Categories" Association="C_Model.Store.FK_CouponOrderCategories_Categories">
-      <End Role="Categories" EntitySet="Categories" />
-      <End Role="CouponOrderCategories" EntitySet="CouponOrderCategories" />
-    </AssociationSet>
     <AssociationSet Name="FK_CostumerCategories_Costumer" Association="C_Model.Store.FK_CostumerCategories_Costumer">
       <End Role="Costumer" EntitySet="Users_Costumer" />
       <End Role="CostumerCategories" EntitySet="CostumerCategories" />
@@ -79,6 +70,10 @@
     <AssociationSet Name="FK_CostumerCategories_Categories" Association="C_Model.Store.FK_CostumerCategories_Categories">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="CostumerCategories" EntitySet="CostumerCategories" />
+    </AssociationSet>
+    <AssociationSet Name="CategoriesCoupon" Association="C_Model.Store.CategoriesCoupon">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="Coupon" EntitySet="Coupons" />
     </AssociationSet>
     <AssociationSet Name="FK_SystemAdmin_inherits_User" Association="C_Model.Store.FK_SystemAdmin_inherits_User">
       <End Role="User" EntitySet="Users" />
@@ -111,6 +106,7 @@
     <Property Name="reaminingQuantity" Type="int" Nullable="false" />
     <Property Name="User_Id" Type="int" Nullable="false" />
     <Property Name="CouponOrder_Id" Type="int" Nullable="false" />
+    <Property Name="Category_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Users">
     <Key>
@@ -214,14 +210,6 @@
     </Key>
     <Property Name="Costumer_Id" Type="int" Nullable="false" />
     <Property Name="CouponAlerts_Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="CouponOrderCategories">
-    <Key>
-      <PropertyRef Name="CouponOrder_Id" />
-      <PropertyRef Name="Categories_Id" />
-    </Key>
-    <Property Name="CouponOrder_Id" Type="int" Nullable="false" />
-    <Property Name="Categories_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="CostumerCategories">
     <Key>
@@ -339,6 +327,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="CategoriesCoupon">
+    <End Role="Categories" Type="C_Model.Store.Categories" Multiplicity="1" />
+    <End Role="Coupon" Type="C_Model.Store.Coupons" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Coupon">
+        <PropertyRef Name="Category_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_CostumerCouponAlert_Costumer">
     <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="1" />
     <End Role="CostumerCouponAlert" Type="C_Model.Store.CostumerCouponAlert" Multiplicity="*" />
@@ -360,30 +360,6 @@
       </Principal>
       <Dependent Role="CostumerCouponAlert">
         <PropertyRef Name="CouponAlerts_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CouponOrderCategories_CouponOrder">
-    <End Role="CouponOrder" Type="C_Model.Store.CouponOrders" Multiplicity="1" />
-    <End Role="CouponOrderCategories" Type="C_Model.Store.CouponOrderCategories" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="CouponOrder">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CouponOrderCategories">
-        <PropertyRef Name="CouponOrder_Id" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_CouponOrderCategories_Categories">
-    <End Role="CouponOrderCategories" Type="C_Model.Store.CouponOrderCategories" Multiplicity="*" />
-    <End Role="Categories" Type="C_Model.Store.Categories" Multiplicity="1" />
-    <ReferentialConstraint>
-      <Principal Role="Categories">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="CouponOrderCategories">
-        <PropertyRef Name="Categories_Id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -519,13 +495,13 @@
             <End Role="SocialNetworkProfile" EntitySet="SocialNetworkProfiles1" />
           </AssociationSet>
           <EntitySet Name="Categories" EntityType="C_Model.Categories" />
-          <AssociationSet Name="CouponOrderCategories" Association="C_Model.CouponOrderCategories">
-            <End Role="CouponOrder" EntitySet="CouponOrders" />
-            <End Role="Categories" EntitySet="Categories" />
-          </AssociationSet>
           <AssociationSet Name="CostumerCategories" Association="C_Model.CostumerCategories">
             <End Role="Costumer" EntitySet="Users" />
             <End Role="Categories" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="CategoriesCoupon" Association="C_Model.CategoriesCoupon">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="Coupon" EntitySet="Coupons" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Coupon">
@@ -543,6 +519,7 @@
           <Property Name="aggregatedRank" Type="Double" Nullable="false" />
           <Property Name="lastDateForUse" Type="DateTime" Nullable="false" />
           <Property Name="reaminingQuantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Category" Relationship="C_Model.CategoriesCoupon" FromRole="Coupon" ToRole="Categories" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -637,7 +614,6 @@
           <Property Name="rank" Type="Double" Nullable="false" />
           <Property Name="QR" Type="String" Nullable="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Categories" Relationship="C_Model.CouponOrderCategories" FromRole="CouponOrder" ToRole="Categories" />
         </EntityType>
         <Association Name="CouponOrderCoupon">
           <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="1" />
@@ -684,13 +660,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="category" Type="C_Model.CategoryTypes" Nullable="false" />
-          <NavigationProperty Name="CouponOrder" Relationship="C_Model.CouponOrderCategories" FromRole="Categories" ToRole="CouponOrder" />
           <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCategories" FromRole="Categories" ToRole="Costumer" />
+          <NavigationProperty Name="Coupons" Relationship="C_Model.CategoriesCoupon" FromRole="Categories" ToRole="Coupon" />
         </EntityType>
-        <Association Name="CouponOrderCategories">
-          <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="*" />
-          <End Type="C_Model.Categories" Role="Categories" Multiplicity="*" />
-        </Association>
         <Association Name="CostumerCategories">
           <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="*" />
           <End Type="C_Model.Categories" Role="Categories" Multiplicity="*" />
@@ -702,6 +674,10 @@
           <Member Name="Sports" />
           <Member Name="LifeStyle" />
         </EnumType>
+        <Association Name="CategoriesCoupon">
+          <End Type="C_Model.Categories" Role="Categories" Multiplicity="1" />
+          <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -893,20 +869,20 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
-    <AssociationSetMapping Name="CouponOrderCategories" TypeName="C_Model.CouponOrderCategories" StoreEntitySet="CouponOrderCategories">
-      <EndProperty Name="CouponOrder">
-        <ScalarProperty Name="Id" ColumnName="CouponOrder_Id" />
-      </EndProperty>
-      <EndProperty Name="Categories">
-        <ScalarProperty Name="Id" ColumnName="Categories_Id" />
-      </EndProperty>
-    </AssociationSetMapping>
     <AssociationSetMapping Name="CostumerCategories" TypeName="C_Model.CostumerCategories" StoreEntitySet="CostumerCategories">
       <EndProperty Name="Costumer">
         <ScalarProperty Name="Id" ColumnName="Costumer_Id" />
       </EndProperty>
       <EndProperty Name="Categories">
         <ScalarProperty Name="Id" ColumnName="Categories_Id" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="CategoriesCoupon" TypeName="C_Model.CategoriesCoupon" StoreEntitySet="Coupons">
+      <EndProperty Name="Categories">
+        <ScalarProperty Name="Id" ColumnName="Category_Id" />
+      </EndProperty>
+      <EndProperty Name="Coupon">
+        <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

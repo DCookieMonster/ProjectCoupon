@@ -16,14 +16,14 @@ namespace DataAccess
     {
         public Categories()
         {
-            this.CouponOrder = new HashSet<CouponOrder>();
             this.Costumer = new HashSet<Costumer>();
+            this.Coupons = new HashSet<Coupon>();
         }
     
         public int Id { get; set; }
         public CategoryTypes category { get; set; }
     
-        public virtual ICollection<CouponOrder> CouponOrder { get; set; }
         public virtual ICollection<Costumer> Costumer { get; set; }
+        public virtual ICollection<Coupon> Coupons { get; set; }
     }
 }

@@ -31,5 +31,6 @@ namespace DataAccess
         public virtual User User { get; set; }
         public virtual ICollection<CouponAlert> CouponAlerts { get; set; }
         public virtual CouponOrder CouponOrder { get; set; }
+        public virtual Categories Category { get; set; }
     }
 }
