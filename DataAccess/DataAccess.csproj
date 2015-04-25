@@ -81,6 +81,7 @@
       <LastGenOutput>C_Model.Context.cs</LastGenOutput>
       <DependentUpon>C_Model.edmx</DependentUpon>
     </Content>
+    <Content Include="C_Model.edmx_new.sql" />
     <Content Include="packages.config" />
     <Content Include="C_Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

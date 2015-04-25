@@ -300,7 +300,9 @@
   </Association>
   <Association Name="CouponOrderCoupon">
     <End Role="CouponOrder" Type="C_Model.Store.CouponOrders" Multiplicity="*" />
-    <End Role="Coupon" Type="C_Model.Store.Coupons" Multiplicity="1" />
+    <End Role="Coupon" Type="C_Model.Store.Coupons" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <ReferentialConstraint>
       <Principal Role="Coupon">
         <PropertyRef Name="Id" />
