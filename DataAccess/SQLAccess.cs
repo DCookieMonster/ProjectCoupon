@@ -56,6 +56,7 @@ namespace DataAccess
                 var newCost = CostumerRepository.Create(costumer);
                 CostumerRepository.SaveChanges();
                 return newCost.Id;
+
             }
             catch (Exception e)
             {
@@ -68,10 +69,13 @@ namespace DataAccess
             try
             {
                 var admin = new SystemAdmin {email = email, password = pass, username = username};
-                var newAdmin = UseRepository.Create(admin);
-                UseRepository.SaveChanges();
+                var newAdmin = AdminRepository.Create(admin);
                 AdminRepository.SaveChanges();
                 return newAdmin.Id;
+                //C_ModelContainer ce=new C_ModelContainer();
+                //ce.Users.Add(admin);
+                //ce.SaveChanges();
+                return admin.Id;
             }
             catch (Exception e)
             {

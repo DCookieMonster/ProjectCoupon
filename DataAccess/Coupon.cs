@@ -17,6 +17,7 @@ namespace DataAccess
         public Coupon()
         {
             this.CouponAlerts = new HashSet<CouponAlert>();
+            this.CouponOrder = new HashSet<CouponOrder>();
             this.Categories = new HashSet<Categories>();
         }
     
@@ -31,7 +32,7 @@ namespace DataAccess
     
         public virtual User User { get; set; }
         public virtual ICollection<CouponAlert> CouponAlerts { get; set; }
-        public virtual CouponOrder CouponOrder { get; set; }
+        public virtual ICollection<CouponOrder> CouponOrder { get; set; }
         public virtual ICollection<Categories> Categories { get; set; }
     }
 }

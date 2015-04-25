@@ -169,7 +169,7 @@
     <Property Name="quantity" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="CouponOrderCoupon">
-    <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="1" />
+    <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="*" />
     <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="1" />
   </Association>
   <Association Name="CostumerCouponOrder">

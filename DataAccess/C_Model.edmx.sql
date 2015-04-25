@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/25/2015 09:22:47
+-- Date Created: 04/25/2015 10:41:17
 -- Generated from EDMX file: Z:\Dropbox (BGU)\Projects\WebProjects\ProjectCoupon\DataAccess\C_Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [c_DB];
+USE [Z:\DROPBOX (BGU)\PROJECTS\WEBPROJECTS\PROJECTCOUPON\DATAACCESS\APP_DATA\C_DB.MDF];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -17,29 +17,14 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[FK_SystemAdminFirmOwner]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users_FirmOwner] DROP CONSTRAINT [FK_SystemAdminFirmOwner];
+IF OBJECT_ID(N'[dbo].[FK_Costumer_inherits_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users_Costumer] DROP CONSTRAINT [FK_Costumer_inherits_User];
 GO
-IF OBJECT_ID(N'[dbo].[FK_CostumerSocialCoupon]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Coupons_SocialCoupon] DROP CONSTRAINT [FK_CostumerSocialCoupon];
+IF OBJECT_ID(N'[dbo].[FK_CostumerCategories_Categories]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CostumerCategories] DROP CONSTRAINT [FK_CostumerCategories_Categories];
 GO
-IF OBJECT_ID(N'[dbo].[FK_UserCoupon]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Coupons] DROP CONSTRAINT [FK_UserCoupon];
-GO
-IF OBJECT_ID(N'[dbo].[FK_FirmOwnerFirm]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Firms] DROP CONSTRAINT [FK_FirmOwnerFirm];
-GO
-IF OBJECT_ID(N'[dbo].[FK_SystemAdminFirm]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Firms] DROP CONSTRAINT [FK_SystemAdminFirm];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CouponCouponAlert]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CouponAlerts] DROP CONSTRAINT [FK_CouponCouponAlert];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CouponOrderCoupon]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CouponOrders] DROP CONSTRAINT [FK_CouponOrderCoupon];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CostumerCouponOrder]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CouponOrders] DROP CONSTRAINT [FK_CostumerCouponOrder];
+IF OBJECT_ID(N'[dbo].[FK_CostumerCategories_Costumer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CostumerCategories] DROP CONSTRAINT [FK_CostumerCategories_Costumer];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CostumerCouponAlert_Costumer]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CostumerCouponAlert] DROP CONSTRAINT [FK_CostumerCouponAlert_Costumer];
@@ -47,14 +32,14 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CostumerCouponAlert_CouponAlert]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CostumerCouponAlert] DROP CONSTRAINT [FK_CostumerCouponAlert_CouponAlert];
 GO
+IF OBJECT_ID(N'[dbo].[FK_CostumerCouponOrder]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CouponOrders] DROP CONSTRAINT [FK_CostumerCouponOrder];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CostumerSocialCoupon]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Coupons_SocialCoupon] DROP CONSTRAINT [FK_CostumerSocialCoupon];
+GO
 IF OBJECT_ID(N'[dbo].[FK_CostumerSocialNetworkProfile]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[SocialNetworkProfiles1] DROP CONSTRAINT [FK_CostumerSocialNetworkProfile];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CostumerCategories_Costumer]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CostumerCategories] DROP CONSTRAINT [FK_CostumerCategories_Costumer];
-GO
-IF OBJECT_ID(N'[dbo].[FK_CostumerCategories_Categories]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[CostumerCategories] DROP CONSTRAINT [FK_CostumerCategories_Categories];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CouponCategories_Categories]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CouponCategories] DROP CONSTRAINT [FK_CouponCategories_Categories];
@@ -62,64 +47,79 @@ GO
 IF OBJECT_ID(N'[dbo].[FK_CouponCategories_Coupon]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CouponCategories] DROP CONSTRAINT [FK_CouponCategories_Coupon];
 GO
-IF OBJECT_ID(N'[dbo].[FK_SystemAdmin_inherits_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users_SystemAdmin] DROP CONSTRAINT [FK_SystemAdmin_inherits_User];
+IF OBJECT_ID(N'[dbo].[FK_CouponCouponAlert]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CouponAlerts] DROP CONSTRAINT [FK_CouponCouponAlert];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CouponOrderCoupon]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CouponOrders] DROP CONSTRAINT [FK_CouponOrderCoupon];
 GO
 IF OBJECT_ID(N'[dbo].[FK_FirmOwner_inherits_User]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Users_FirmOwner] DROP CONSTRAINT [FK_FirmOwner_inherits_User];
 GO
-IF OBJECT_ID(N'[dbo].[FK_Costumer_inherits_User]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Users_Costumer] DROP CONSTRAINT [FK_Costumer_inherits_User];
+IF OBJECT_ID(N'[dbo].[FK_FirmOwnerFirm]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Firms] DROP CONSTRAINT [FK_FirmOwnerFirm];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SocialCoupon_inherits_Coupon]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Coupons_SocialCoupon] DROP CONSTRAINT [FK_SocialCoupon_inherits_Coupon];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SystemAdmin_inherits_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users_SystemAdmin] DROP CONSTRAINT [FK_SystemAdmin_inherits_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SystemAdminFirm]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Firms] DROP CONSTRAINT [FK_SystemAdminFirm];
+GO
+IF OBJECT_ID(N'[dbo].[FK_SystemAdminFirmOwner]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Users_FirmOwner] DROP CONSTRAINT [FK_SystemAdminFirmOwner];
+GO
+IF OBJECT_ID(N'[dbo].[FK_UserCoupon]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[Coupons] DROP CONSTRAINT [FK_UserCoupon];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Coupons]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Coupons];
-GO
-IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users];
-GO
-IF OBJECT_ID(N'[dbo].[Firms]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Firms];
-GO
-IF OBJECT_ID(N'[dbo].[CouponAlerts]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CouponAlerts];
-GO
-IF OBJECT_ID(N'[dbo].[CouponOrders]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CouponOrders];
-GO
-IF OBJECT_ID(N'[dbo].[SocialNetworkProfiles1]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[SocialNetworkProfiles1];
-GO
 IF OBJECT_ID(N'[dbo].[Categories]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Categories];
-GO
-IF OBJECT_ID(N'[dbo].[Users_SystemAdmin]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users_SystemAdmin];
-GO
-IF OBJECT_ID(N'[dbo].[Users_FirmOwner]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users_FirmOwner];
-GO
-IF OBJECT_ID(N'[dbo].[Users_Costumer]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Users_Costumer];
-GO
-IF OBJECT_ID(N'[dbo].[Coupons_SocialCoupon]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Coupons_SocialCoupon];
-GO
-IF OBJECT_ID(N'[dbo].[CostumerCouponAlert]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[CostumerCouponAlert];
 GO
 IF OBJECT_ID(N'[dbo].[CostumerCategories]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CostumerCategories];
 GO
+IF OBJECT_ID(N'[dbo].[CostumerCouponAlert]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CostumerCouponAlert];
+GO
+IF OBJECT_ID(N'[dbo].[CouponAlerts]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CouponAlerts];
+GO
 IF OBJECT_ID(N'[dbo].[CouponCategories]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CouponCategories];
+GO
+IF OBJECT_ID(N'[dbo].[CouponOrders]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CouponOrders];
+GO
+IF OBJECT_ID(N'[dbo].[Coupons]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Coupons];
+GO
+IF OBJECT_ID(N'[dbo].[Coupons_SocialCoupon]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Coupons_SocialCoupon];
+GO
+IF OBJECT_ID(N'[dbo].[Firms]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Firms];
+GO
+IF OBJECT_ID(N'[dbo].[SocialNetworkProfiles1]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[SocialNetworkProfiles1];
+GO
+IF OBJECT_ID(N'[dbo].[Users]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users];
+GO
+IF OBJECT_ID(N'[dbo].[Users_Costumer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users_Costumer];
+GO
+IF OBJECT_ID(N'[dbo].[Users_FirmOwner]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users_FirmOwner];
+GO
+IF OBJECT_ID(N'[dbo].[Users_SystemAdmin]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Users_SystemAdmin];
 GO
 
 -- --------------------------------------------------
