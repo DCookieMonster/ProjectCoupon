@@ -69,6 +69,10 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>C_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="App_Data\c_DB.mdf" />
+    <Content Include="App_Data\c_DB_log.ldf">
+      <DependentUpon>c_DB.mdf</DependentUpon>
+    </Content>
     <Content Include="C_Model.edmx.diagram">
       <DependentUpon>C_Model.edmx</DependentUpon>
     </Content>
@@ -96,7 +100,9 @@
       <DependentUpon>CouponDB.mdf</DependentUpon>
     </Content>
     <Content Include="C_Model.edmx.sql" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AlertType.cs">

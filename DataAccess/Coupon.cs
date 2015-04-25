@@ -17,20 +17,21 @@ namespace DataAccess
         public Coupon()
         {
             this.CouponAlerts = new HashSet<CouponAlert>();
+            this.Categories = new HashSet<Categories>();
         }
     
         public int Id { get; set; }
         public string name { get; set; }
         public string description { get; set; }
-        public double originalPrice { get; set; }
-        public double discountPrice { get; set; }
-        public double aggregatedRank { get; set; }
-        public System.DateTime lastDateForUse { get; set; }
-        public int reaminingQuantity { get; set; }
+        public Nullable<double> originalPrice { get; set; }
+        public Nullable<double> discountPrice { get; set; }
+        public Nullable<double> aggregatedRank { get; set; }
+        public Nullable<System.DateTime> lastDateForUse { get; set; }
+        public Nullable<int> reaminingQuantity { get; set; }
     
         public virtual User User { get; set; }
         public virtual ICollection<CouponAlert> CouponAlerts { get; set; }
         public virtual CouponOrder CouponOrder { get; set; }
-        public virtual Categories Category { get; set; }
+        public virtual ICollection<Categories> Categories { get; set; }
     }
 }

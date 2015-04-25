@@ -34,9 +34,10 @@
         <AssociationConnector Association="C_Model.CostumerCouponAlert" />
         <EntityTypeShape EntityType="C_Model.SocialNetworkProfile" Width="1.5" PointX="8.75" PointY="9" />
         <AssociationConnector Association="C_Model.CostumerSocialNetworkProfile" />
-        <EntityTypeShape EntityType="C_Model.Categories" Width="1.5" PointX="6" PointY="2.625" />
+        <EntityTypeShape EntityType="C_Model.Categories" Width="1.5" PointX="6" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="C_Model.CostumerCategories" />
-        <AssociationConnector Association="C_Model.CategoriesCoupon" />
+        <AssociationConnector Association="C_Model.CouponOrderCategories" />
+        <AssociationConnector Association="C_Model.CouponCategories" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

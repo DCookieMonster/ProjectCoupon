@@ -2,13 +2,13 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/24/2015 18:37:12
+-- Date Created: 04/25/2015 09:22:47
 -- Generated from EDMX file: Z:\Dropbox (BGU)\Projects\WebProjects\ProjectCoupon\DataAccess\C_Model.edmx
 -- --------------------------------------------------
 
 SET QUOTED_IDENTIFIER OFF;
 GO
-USE [CouponDB];
+USE [c_DB];
 GO
 IF SCHEMA_ID(N'dbo') IS NULL EXECUTE(N'CREATE SCHEMA [dbo]');
 GO
@@ -36,7 +36,7 @@ IF OBJECT_ID(N'[dbo].[FK_CouponCouponAlert]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CouponAlerts] DROP CONSTRAINT [FK_CouponCouponAlert];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CouponOrderCoupon]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Coupons] DROP CONSTRAINT [FK_CouponOrderCoupon];
+    ALTER TABLE [dbo].[CouponOrders] DROP CONSTRAINT [FK_CouponOrderCoupon];
 GO
 IF OBJECT_ID(N'[dbo].[FK_CostumerCouponOrder]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CouponOrders] DROP CONSTRAINT [FK_CostumerCouponOrder];
@@ -55,6 +55,12 @@ IF OBJECT_ID(N'[dbo].[FK_CostumerCategories_Costumer]', 'F') IS NOT NULL
 GO
 IF OBJECT_ID(N'[dbo].[FK_CostumerCategories_Categories]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[CostumerCategories] DROP CONSTRAINT [FK_CostumerCategories_Categories];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CouponCategories_Categories]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CouponCategories] DROP CONSTRAINT [FK_CouponCategories_Categories];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CouponCategories_Coupon]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[CouponCategories] DROP CONSTRAINT [FK_CouponCategories_Coupon];
 GO
 IF OBJECT_ID(N'[dbo].[FK_SystemAdmin_inherits_User]', 'F') IS NOT NULL
     ALTER TABLE [dbo].[Users_SystemAdmin] DROP CONSTRAINT [FK_SystemAdmin_inherits_User];
@@ -112,6 +118,9 @@ GO
 IF OBJECT_ID(N'[dbo].[CostumerCategories]', 'U') IS NOT NULL
     DROP TABLE [dbo].[CostumerCategories];
 GO
+IF OBJECT_ID(N'[dbo].[CouponCategories]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CouponCategories];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -121,15 +130,13 @@ GO
 CREATE TABLE [dbo].[Coupons] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [name] nvarchar(max)  NOT NULL,
-    [description] nvarchar(max)  NOT NULL,
-    [originalPrice] float  NOT NULL,
-    [discountPrice] float  NOT NULL,
-    [aggregatedRank] float  NOT NULL,
-    [lastDateForUse] datetime  NOT NULL,
-    [reaminingQuantity] int  NOT NULL,
-    [User_Id] int  NOT NULL,
-    [CouponOrder_Id] int  NOT NULL,
-    [Category_Id] int  NOT NULL
+    [description] nvarchar(max)  NULL,
+    [originalPrice] float  NULL,
+    [discountPrice] float  NULL,
+    [aggregatedRank] float  NULL,
+    [lastDateForUse] datetime  NULL,
+    [reaminingQuantity] int  NULL,
+    [User_Id] int  NOT NULL
 );
 GO
 
@@ -176,6 +183,7 @@ CREATE TABLE [dbo].[CouponOrders] (
     [rank] float  NOT NULL,
     [QR] nvarchar(max)  NOT NULL,
     [quantity] int  NOT NULL,
+    [Coupons_Id] int  NOT NULL,
     [Costumer_Id] int  NOT NULL
 );
 GO
@@ -239,6 +247,13 @@ GO
 CREATE TABLE [dbo].[CostumerCategories] (
     [Costumer_Id] int  NOT NULL,
     [Categories_Id] int  NOT NULL
+);
+GO
+
+-- Creating table 'CouponCategories'
+CREATE TABLE [dbo].[CouponCategories] (
+    [Categories_Id] int  NOT NULL,
+    [Coupons1_Id] int  NOT NULL
 );
 GO
 
@@ -322,6 +337,12 @@ GO
 ALTER TABLE [dbo].[CostumerCategories]
 ADD CONSTRAINT [PK_CostumerCategories]
     PRIMARY KEY CLUSTERED ([Costumer_Id], [Categories_Id] ASC);
+GO
+
+-- Creating primary key on [Categories_Id], [Coupons1_Id] in table 'CouponCategories'
+ALTER TABLE [dbo].[CouponCategories]
+ADD CONSTRAINT [PK_CouponCategories]
+    PRIMARY KEY CLUSTERED ([Categories_Id], [Coupons1_Id] ASC);
 GO
 
 -- --------------------------------------------------
@@ -412,18 +433,18 @@ ON [dbo].[CouponAlerts]
     ([Coupon_Id]);
 GO
 
--- Creating foreign key on [CouponOrder_Id] in table 'Coupons'
-ALTER TABLE [dbo].[Coupons]
+-- Creating foreign key on [Coupons_Id] in table 'CouponOrders'
+ALTER TABLE [dbo].[CouponOrders]
 ADD CONSTRAINT [FK_CouponOrderCoupon]
-    FOREIGN KEY ([CouponOrder_Id])
-    REFERENCES [dbo].[CouponOrders]
+    FOREIGN KEY ([Coupons_Id])
+    REFERENCES [dbo].[Coupons]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 -- Creating non-clustered index for FOREIGN KEY 'FK_CouponOrderCoupon'
 CREATE INDEX [IX_FK_CouponOrderCoupon]
-ON [dbo].[Coupons]
-    ([CouponOrder_Id]);
+ON [dbo].[CouponOrders]
+    ([Coupons_Id]);
 GO
 
 -- Creating foreign key on [Costumer_Id] in table 'CouponOrders'
@@ -500,18 +521,27 @@ ON [dbo].[CostumerCategories]
     ([Categories_Id]);
 GO
 
--- Creating foreign key on [Category_Id] in table 'Coupons'
-ALTER TABLE [dbo].[Coupons]
-ADD CONSTRAINT [FK_CategoriesCoupon]
-    FOREIGN KEY ([Category_Id])
+-- Creating foreign key on [Categories_Id] in table 'CouponCategories'
+ALTER TABLE [dbo].[CouponCategories]
+ADD CONSTRAINT [FK_CouponCategories_Categories]
+    FOREIGN KEY ([Categories_Id])
     REFERENCES [dbo].[Categories]
         ([Id])
     ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
 
--- Creating non-clustered index for FOREIGN KEY 'FK_CategoriesCoupon'
-CREATE INDEX [IX_FK_CategoriesCoupon]
-ON [dbo].[Coupons]
-    ([Category_Id]);
+-- Creating foreign key on [Coupons1_Id] in table 'CouponCategories'
+ALTER TABLE [dbo].[CouponCategories]
+ADD CONSTRAINT [FK_CouponCategories_Coupon]
+    FOREIGN KEY ([Coupons1_Id])
+    REFERENCES [dbo].[Coupons]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CouponCategories_Coupon'
+CREATE INDEX [IX_FK_CouponCategories_Coupon]
+ON [dbo].[CouponCategories]
+    ([Coupons1_Id]);
 GO
 
 -- Creating foreign key on [Id] in table 'Users_SystemAdmin'

@@ -52,7 +52,7 @@
       <End Role="Costumer" EntitySet="Users" />
       <End Role="Categories" EntitySet="Categories" />
     </AssociationSet>
-    <AssociationSet Name="CategoriesCoupon" Association="C_Model.CategoriesCoupon">
+    <AssociationSet Name="CouponCategories" Association="C_Model.CouponCategories">
       <End Role="Categories" EntitySet="Categories" />
       <End Role="Coupon" EntitySet="Coupons" />
     </AssociationSet>
@@ -62,26 +62,26 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="name" Type="String" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="User" Relationship="C_Model.UserCoupon" FromRole="Coupon" ToRole="User" />
     <NavigationProperty Name="CouponAlerts" Relationship="C_Model.CouponCouponAlert" FromRole="Coupon" ToRole="CouponAlert" />
     <NavigationProperty Name="CouponOrder" Relationship="C_Model.CouponOrderCoupon" FromRole="Coupon" ToRole="CouponOrder" />
-    <Property Name="description" Type="String" Nullable="false" />
-    <Property Name="originalPrice" Type="Double" Nullable="false" />
-    <Property Name="discountPrice" Type="Double" Nullable="false" />
-    <Property Name="aggregatedRank" Type="Double" Nullable="false" />
-    <Property Name="lastDateForUse" Type="DateTime" Nullable="false" />
-    <Property Name="reaminingQuantity" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="Category" Relationship="C_Model.CategoriesCoupon" FromRole="Coupon" ToRole="Categories" />
+    <Property Name="description" Type="String" Unicode="true" FixedLength="false" MaxLength="Max" />
+    <Property Name="originalPrice" Type="Double" />
+    <Property Name="discountPrice" Type="Double" />
+    <Property Name="aggregatedRank" Type="Double" />
+    <Property Name="lastDateForUse" Type="DateTime" Precision="3" />
+    <Property Name="reaminingQuantity" Type="Int32" />
+    <NavigationProperty Name="Categories" Relationship="C_Model.CouponCategories" FromRole="Coupon" ToRole="Categories" />
   </EntityType>
   <EntityType Name="User">
     <Key>
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="username" Type="String" Nullable="false" />
-    <Property Name="password" Type="String" Nullable="false" />
-    <Property Name="email" Type="String" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Coupons" Relationship="C_Model.UserCoupon" FromRole="User" ToRole="Coupon" />
   </EntityType>
   <EntityType Name="SystemAdmin" BaseType="C_Model.User">
@@ -123,12 +123,12 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="FirmOwner" Relationship="C_Model.FirmOwnerFirm" FromRole="Firm" ToRole="FirmOwner" />
     <NavigationProperty Name="SystemAdmin" Relationship="C_Model.SystemAdminFirm" FromRole="Firm" ToRole="SystemAdmin" />
-    <Property Name="name" Type="String" Nullable="false" />
-    <Property Name="address" Type="String" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="address" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="longitude" Type="Double" Nullable="false" />
     <Property Name="latitude" Type="Double" Nullable="false" />
-    <Property Name="description" Type="String" Nullable="false" />
-    <Property Name="city" Type="String" Nullable="false" />
+    <Property Name="description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="city" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
   </EntityType>
   <Association Name="FirmOwnerFirm">
     <End Type="C_Model.FirmOwner" Role="FirmOwner" Multiplicity="1" />
@@ -145,7 +145,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Coupon" Relationship="C_Model.CouponCouponAlert" FromRole="CouponAlert" ToRole="Coupon" />
     <Property Name="alerType" Type="C_Model.AlertType" Nullable="false" />
-    <Property Name="text" Type="String" Nullable="false" />
+    <Property Name="text" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCouponAlert" FromRole="CouponAlert" ToRole="Costumer" />
   </EntityType>
   <Association Name="CouponCouponAlert">
@@ -159,18 +159,18 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <NavigationProperty Name="Coupons" Relationship="C_Model.CouponOrderCoupon" FromRole="CouponOrder" ToRole="Coupon" />
     <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCouponOrder" FromRole="CouponOrder" ToRole="Costumer" />
-    <Property Name="serialKey" Type="String" Nullable="false" />
-    <Property Name="date" Type="DateTime" Nullable="false" />
-    <Property Name="recipt" Type="String" Nullable="false" />
+    <Property Name="serialKey" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="recipt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="isUsed" Type="Boolean" Nullable="false" />
-    <Property Name="creditApproval" Type="String" Nullable="false" />
+    <Property Name="creditApproval" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="rank" Type="Double" Nullable="false" />
-    <Property Name="QR" Type="String" Nullable="false" />
+    <Property Name="QR" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="quantity" Type="Int32" Nullable="false" />
   </EntityType>
   <Association Name="CouponOrderCoupon">
     <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="1" />
-    <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="*" />
+    <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="1" />
   </Association>
   <Association Name="CostumerCouponOrder">
     <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1" />
@@ -185,12 +185,12 @@
       <PropertyRef Name="Id" />
     </Key>
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="username" Type="String" Nullable="false" />
-    <Property Name="email" Type="String" Nullable="false" />
-    <Property Name="password" Type="String" Nullable="false" />
-    <Property Name="sendData" Type="String" Nullable="false" />
-    <Property Name="recivedDData" Type="String" Nullable="false" />
-    <Property Name="authToken" Type="String" Nullable="false" />
+    <Property Name="username" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="email" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="sendData" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="recivedDData" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="authToken" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerSocialNetworkProfile" FromRole="SocialNetworkProfile" ToRole="Costumer" />
   </EntityType>
   <Association Name="CostumerSocialNetworkProfile">
@@ -214,7 +214,7 @@
     <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="category" Type="C_Model.CategoryTypes" Nullable="false" />
     <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerCategories" FromRole="Categories" ToRole="Costumer" />
-    <NavigationProperty Name="Coupons" Relationship="C_Model.CategoriesCoupon" FromRole="Categories" ToRole="Coupon" />
+    <NavigationProperty Name="Coupons1" Relationship="C_Model.CouponCategories" FromRole="Categories" ToRole="Coupon" />
   </EntityType>
   <Association Name="CostumerCategories">
     <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="*" />
@@ -227,8 +227,8 @@
     <Member Name="Sports" />
     <Member Name="LifeStyle" />
   </EnumType>
-  <Association Name="CategoriesCoupon">
-    <End Type="C_Model.Categories" Role="Categories" Multiplicity="1" />
+  <Association Name="CouponCategories">
+    <End Type="C_Model.Categories" Role="Categories" Multiplicity="*" />
     <End Type="C_Model.Coupon" Role="Coupon" Multiplicity="*" />
   </Association>
 </Schema>

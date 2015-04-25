@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 
@@ -24,14 +25,19 @@ namespace DataAccess
         {
             try
             {
-                var user = new User {email = email, password = pass, username = username};
-                var newUser = UseRepository.Create(user);
-                UseRepository.SaveChanges();
+               
+                  
+                    var user = new User { email = email, password = pass, username = username };
+
+
+                    var newUser = UseRepository.Create(user);
+                    UseRepository.SaveChanges();
                 return newUser.Id;
+
             }
             catch (Exception e)
             {
-                return -1;
+                                  return -1;
             }
         }
 
@@ -62,7 +68,8 @@ namespace DataAccess
             try
             {
                 var admin = new SystemAdmin {email = email, password = pass, username = username};
-                var newAdmin = AdminRepository.Create(admin);
+                var newAdmin = UseRepository.Create(admin);
+                UseRepository.SaveChanges();
                 AdminRepository.SaveChanges();
                 return newAdmin.Id;
             }
@@ -72,11 +79,11 @@ namespace DataAccess
             }
         }
 
-        public static int CreateFirmOwner(string username, string pass, string email)
+        public static int CreateFirmOwner(SystemAdmin sa,string username, string pass, string email)
         {
             try
             {
-                var admin = new FirmOwner { email = email, password = pass, username = username };
+                var admin = new FirmOwner {email = email, password = pass, username = username, SystemAdmin = sa};
                 var newAdmin = FirmOwenrRepository.Create(admin);
                 FirmOwenrRepository.SaveChanges();
                 return newAdmin.Id;
@@ -209,7 +216,7 @@ namespace DataAccess
             }
         }
 
-        public static int CreateCouponOrder(ICollection<Coupon> coup,Costumer costumer, string QR, bool isUsed, string CreaditApproval, int quant,
+        public static int CreateCouponOrder(Coupon coup,Costumer costumer, string QR, bool isUsed, string CreaditApproval, int quant,
          double rank, DateTime date, string recipt,string serialNumber)
         {
             try

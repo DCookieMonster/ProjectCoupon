@@ -14,11 +14,6 @@ namespace DataAccess
     
     public partial class CouponOrder
     {
-        public CouponOrder()
-        {
-            this.Coupons = new HashSet<Coupon>();
-        }
-    
         public int Id { get; set; }
         public string serialKey { get; set; }
         public System.DateTime date { get; set; }
@@ -29,7 +24,7 @@ namespace DataAccess
         public string QR { get; set; }
         public int quantity { get; set; }
     
-        public virtual ICollection<Coupon> Coupons { get; set; }
+        public virtual Coupon Coupons { get; set; }
         public virtual Costumer Costumer { get; set; }
     }
 }
