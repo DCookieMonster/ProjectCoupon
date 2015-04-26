@@ -313,7 +313,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="CostumerCouponOrder">
-    <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="1" />
+    <End Role="Costumer" Type="C_Model.Store.Users_Costumer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="CouponOrder" Type="C_Model.Store.CouponOrders" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Costumer">

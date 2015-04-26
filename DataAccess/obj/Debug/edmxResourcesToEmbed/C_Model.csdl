@@ -175,7 +175,9 @@
     </End>
   </Association>
   <Association Name="CostumerCouponOrder">
-    <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1" />
+    <End Type="C_Model.Costumer" Role="Costumer" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Type="C_Model.CouponOrder" Role="CouponOrder" Multiplicity="*" />
   </Association>
   <Association Name="CostumerCouponAlert">
