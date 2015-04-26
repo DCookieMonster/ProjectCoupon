@@ -25,6 +25,8 @@ namespace DataAccess
     
         public double age { get; set; }
         public Gender gender { get; set; }
+        public double longitude { get; set; }
+        public double latitude { get; set; }
     
         public virtual ICollection<SocialCoupon> SocialCoupons { get; set; }
         public virtual ICollection<CouponOrder> CouponOrders { get; set; }

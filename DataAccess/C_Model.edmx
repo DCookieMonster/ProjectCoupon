@@ -153,7 +153,7 @@
     <Property Name="recipt" Type="nvarchar(max)" Nullable="false" />
     <Property Name="isUsed" Type="bit" Nullable="false" />
     <Property Name="creditApproval" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="rank" Type="float" Nullable="false" />
+    <Property Name="rank" Type="int" Nullable="false" />
     <Property Name="QR" Type="nvarchar(max)" Nullable="false" />
     <Property Name="quantity" Type="int" Nullable="false" />
     <Property Name="Coupons_Id" Type="int" Nullable="false" />
@@ -198,6 +198,8 @@
     </Key>
     <Property Name="age" Type="float" Nullable="false" />
     <Property Name="gender" Type="int" Nullable="false" />
+    <Property Name="longitude" Type="float" Nullable="false" />
+    <Property Name="latitude" Type="float" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Coupons_SocialCoupon">
@@ -579,6 +581,8 @@
           <NavigationProperty Name="CouponAlerts" Relationship="C_Model.CostumerCouponAlert" FromRole="Costumer" ToRole="CouponAlert" />
           <NavigationProperty Name="SocialNetworkProfiles" Relationship="C_Model.CostumerSocialNetworkProfile" FromRole="Costumer" ToRole="SocialNetworkProfile" />
           <NavigationProperty Name="Categories" Relationship="C_Model.CostumerCategories" FromRole="Costumer" ToRole="Categories" />
+          <Property Name="longitude" Type="Double" Nullable="false" />
+          <Property Name="latitude" Type="Double" Nullable="false" />
         </EntityType>
         <EntityType Name="SocialCoupon" BaseType="C_Model.Coupon">
           <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerSocialCoupon" FromRole="SocialCoupon" ToRole="Costumer" />
@@ -642,7 +646,7 @@
           <Property Name="recipt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="isUsed" Type="Boolean" Nullable="false" />
           <Property Name="creditApproval" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="rank" Type="Double" Nullable="false" />
+          <Property Name="rank" Type="Int32" Nullable="false" />
           <Property Name="QR" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="quantity" Type="Int32" Nullable="false" />
         </EntityType>
@@ -763,6 +767,8 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="age" ColumnName="age" />
           <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

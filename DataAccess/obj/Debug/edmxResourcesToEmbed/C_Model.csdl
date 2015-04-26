@@ -104,6 +104,8 @@
     <NavigationProperty Name="CouponAlerts" Relationship="C_Model.CostumerCouponAlert" FromRole="Costumer" ToRole="CouponAlert" />
     <NavigationProperty Name="SocialNetworkProfiles" Relationship="C_Model.CostumerSocialNetworkProfile" FromRole="Costumer" ToRole="SocialNetworkProfile" />
     <NavigationProperty Name="Categories" Relationship="C_Model.CostumerCategories" FromRole="Costumer" ToRole="Categories" />
+    <Property Name="longitude" Type="Double" Nullable="false" />
+    <Property Name="latitude" Type="Double" Nullable="false" />
   </EntityType>
   <EntityType Name="SocialCoupon" BaseType="C_Model.Coupon">
     <NavigationProperty Name="Costumer" Relationship="C_Model.CostumerSocialCoupon" FromRole="SocialCoupon" ToRole="Costumer" />
@@ -164,7 +166,7 @@
     <Property Name="recipt" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="isUsed" Type="Boolean" Nullable="false" />
     <Property Name="creditApproval" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-    <Property Name="rank" Type="Double" Nullable="false" />
+    <Property Name="rank" Type="Int32" Nullable="false" />
     <Property Name="QR" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="quantity" Type="Int32" Nullable="false" />
   </EntityType>

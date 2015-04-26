@@ -41,7 +41,7 @@ namespace DataAccess
             }
         }
 
-        public static int CreateCostumer(string username,string pass,string email, int gender, double age)
+        public static int CreateCostumer(string username,string pass,string email, int gender, double age,double longitude,double latitude)
         {
             try
             {
@@ -51,7 +51,9 @@ namespace DataAccess
                     gender = (Gender) gender,
                     username = username,
                     password = pass,
-                    email = email
+                    email = email,
+                    latitude = latitude,
+                    longitude = longitude
                 };
                 var newCost = CostumerRepository.Create(costumer);
                 CostumerRepository.SaveChanges();
@@ -221,7 +223,7 @@ namespace DataAccess
         }
 
         public static int CreateCouponOrder(Coupon coup,Costumer costumer, string QR, bool isUsed, string CreaditApproval, int quant,
-         double rank, DateTime date, string recipt,string serialNumber)
+         int rank, DateTime date, string recipt,string serialNumber)
         {
             try
             {

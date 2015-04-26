@@ -44,6 +44,8 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="age" ColumnName="age" />
           <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="longitude" ColumnName="longitude" />
+          <ScalarProperty Name="latitude" ColumnName="latitude" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

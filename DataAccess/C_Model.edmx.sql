@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/25/2015 18:02:55
+-- Date Created: 04/26/2015 12:56:26
 -- Generated from EDMX file: Z:\Dropbox (BGU)\Projects\WebProjects\ProjectCoupon\DataAccess\C_Model.edmx
 -- --------------------------------------------------
 
@@ -180,7 +180,7 @@ CREATE TABLE [dbo].[CouponOrders] (
     [recipt] nvarchar(max)  NOT NULL,
     [isUsed] bit  NOT NULL,
     [creditApproval] nvarchar(max)  NOT NULL,
-    [rank] float  NOT NULL,
+    [rank] int  NOT NULL,
     [QR] nvarchar(max)  NOT NULL,
     [quantity] int  NOT NULL,
     [Coupons_Id] int  NOT NULL,
@@ -225,6 +225,8 @@ GO
 CREATE TABLE [dbo].[Users_Costumer] (
     [age] float  NOT NULL,
     [gender] int  NOT NULL,
+    [longitude] float  NOT NULL,
+    [latitude] float  NOT NULL,
     [Id] int  NOT NULL
 );
 GO

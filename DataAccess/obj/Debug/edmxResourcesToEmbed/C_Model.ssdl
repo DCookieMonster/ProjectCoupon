@@ -148,7 +148,7 @@
     <Property Name="recipt" Type="nvarchar(max)" Nullable="false" />
     <Property Name="isUsed" Type="bit" Nullable="false" />
     <Property Name="creditApproval" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="rank" Type="float" Nullable="false" />
+    <Property Name="rank" Type="int" Nullable="false" />
     <Property Name="QR" Type="nvarchar(max)" Nullable="false" />
     <Property Name="quantity" Type="int" Nullable="false" />
     <Property Name="Coupons_Id" Type="int" Nullable="false" />
@@ -193,6 +193,8 @@
     </Key>
     <Property Name="age" Type="float" Nullable="false" />
     <Property Name="gender" Type="int" Nullable="false" />
+    <Property Name="longitude" Type="float" Nullable="false" />
+    <Property Name="latitude" Type="float" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="Coupons_SocialCoupon">

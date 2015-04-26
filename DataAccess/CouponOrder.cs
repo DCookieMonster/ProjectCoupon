@@ -20,7 +20,7 @@ namespace DataAccess
         public string recipt { get; set; }
         public bool isUsed { get; set; }
         public string creditApproval { get; set; }
-        public double rank { get; set; }
+        public int rank { get; set; }
         public string QR { get; set; }
         public int quantity { get; set; }
     
